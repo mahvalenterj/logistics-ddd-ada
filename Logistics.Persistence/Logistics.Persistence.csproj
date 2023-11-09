@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Logistica.Application\Logistics.Application.csproj" />
+    <ProjectReference Include="..\Logistics.Domain\Logistics.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
   </ItemGroup>
 
 </Project>

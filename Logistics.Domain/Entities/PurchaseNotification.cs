@@ -9,11 +9,9 @@ namespace Logistics.Domain.Entities
 {
     public class PurchaseNotification : BaseEntity
     {
-        public Guid PurchaseNotificationId { get; set; }
-
-        public Receiver DataReceiver { get; set; }
-
-        public Product DataProduct { get; set;}
+        public Guid NotificationId { get; set; }
+        public string RecipientData { get; set; }
+        public Product ProductData { get; set; }
     }
 
 }
