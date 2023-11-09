@@ -12,7 +12,6 @@ namespace Logistics.Domain.Entities
             public int ReceiverID { get; set; }
             public int ProductID { get; set; }
             public double Price { get; set; }
-            public double Weight { get; set; }
             public int Quantity { get; set; }
     
 
