@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logistica.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,9 @@ namespace Logistics.Domain.Entities
     {
         public Guid PurchaseNotificationId { get; set; }
 
-        public string DataReceiver { get; set; }
+        public Receiver DataReceiver { get; set; }
 
-        public string DataProduct { get; set;}
+        public Product DataProduct { get; set;}
     }
+
 }
