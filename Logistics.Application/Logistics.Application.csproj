@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logistica.Application\Logistics.Application.csproj" />
+    <ProjectReference Include="..\Logistica.Domain\Logistica.Domain.csproj" />
   </ItemGroup>
 
 </Project>
