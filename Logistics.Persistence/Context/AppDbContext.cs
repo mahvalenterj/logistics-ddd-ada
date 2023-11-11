@@ -1,7 +1,5 @@
 ﻿using Logistics.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 public class AppDbContext : DbContext
 {

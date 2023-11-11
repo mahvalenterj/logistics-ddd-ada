@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*Iusing MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using FluentValidation;
 
-namespace Logistics.Application.Services
+public static class ServiceExtensions
 {
-    internal class Class1
+    public static void ConfigureApplicationApp(this IServiceCollection services)
     {
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        // Adicione a configuração do FluentValidation aqui se necessário
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }
 }
+*/

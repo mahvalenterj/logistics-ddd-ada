@@ -1,8 +1,5 @@
 ﻿//Garante que T deve ser uma classe que herda de BaseEntity. Isso cria uma restrição no tipo de entidades que podem ser usadas com esse repositório.
 
-using Microsoft.VisualBasic;
-using System.Runtime.Intrinsics.X86;
-using System;
 using Logistica.Domain.Entities;
 
 public interface IBaseRepository<T> where T : BaseEntity
