@@ -2,15 +2,13 @@
 
 public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
-    // Implementar  a interface IBaseRepository que fornecerá os métodos base definidos na interface
-
-    // Encapsular contexto de banco de dados
+   
 
     protected readonly AppDbContext Context;
 
     public BaseRepository(AppDbContext context)
     {
-        // injetar a instancia do contexto ao construtor
+      
         Context = context;
     }
 

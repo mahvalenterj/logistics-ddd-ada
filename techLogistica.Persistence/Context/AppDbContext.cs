@@ -8,8 +8,8 @@ public class AppDbContext : DbContext
 
     }
 
-    // DB Set ele é a representação de uma tabela
-    // que vem do Entities do nosso Domain ao banco de dados
+    // DB Set - Representação de uma tabela
+    // Entities do nosso Domain ao banco de dados
     public DbSet<PurchaseNotification> PurchaseNotifications { get; set; }
 
     public DbSet<Product> Products { get; set; }
@@ -23,7 +23,7 @@ public class AppDbContext : DbContext
             .WithOne(r => r.PurchaseNotification)
             .HasForeignKey<Recipient>(r => r.PurchaseNotificationId);
 
-        // Adicione outras configurações de modelo conforme necessário
+        
 
         base.OnModelCreating(modelBuilder);
     }

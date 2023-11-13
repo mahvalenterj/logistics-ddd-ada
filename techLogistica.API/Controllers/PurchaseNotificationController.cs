@@ -1,22 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using FluentValidation;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
 
-// Nome da Rota
 [Route("api/[controller]")]
 [ApiController]
 public class PurchaseNotificationController : ControllerBase
 {
-    IMediator _mediator;
+    private readonly IMediator _mediator;
 
     public PurchaseNotificationController(IMediator mediator)
     {
-        _mediator = mediator;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreatePurchaseNotificationRequest request)
+    public async Task<IActionResult> Create([FromBody] CreatePurchaseNotificationRequest request)
     {
-        var purchasenotification = await _mediator.Send(request);
-        return Ok(purchasenotification);
+        try
+        {
+            var purchaseNotification = await _mediator.Send(request);
+            return Ok(purchaseNotification);
+        }
+        catch (ValidationException ex)
+        {
+            // Erros de validação
+            return BadRequest(new { Errors = ex.Errors });
+        }
+        catch (Exception ex)
+        {
+            // Outras exceções
+            // Registre a exceção em log se necessário
+            return StatusCode(500, "Ocorreu um erro interno no servidor.");
+        }
     }
 }
