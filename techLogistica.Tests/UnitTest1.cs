@@ -1,4 +1,4 @@
-﻿namespace techComercio.Tests;
+﻿namespace techLogistica.Tests;
 
 public class UnitTest1
 {

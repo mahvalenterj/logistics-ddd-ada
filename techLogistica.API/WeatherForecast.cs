@@ -1,4 +1,4 @@
-﻿namespace techComercio.API;
+﻿namespace techLogistica.API;
 
 public class WeatherForecast
 {
