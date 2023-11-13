@@ -1,4 +1,4 @@
-﻿/* using FluentValidation;
+﻿using FluentValidation;
 
 public class PurchaseNotificationValidator : AbstractValidator<PurchaseNotification>
 {
@@ -35,4 +35,4 @@ public class PurchaseNotificationValidator : AbstractValidator<PurchaseNotificat
             .NotEmpty()
             .MaximumLength(20);  // Ajuste o comprimento conforme necessário
     }
-} */
+}
