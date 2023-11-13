@@ -6,33 +6,32 @@ public class PurchaseNotificationValidator : AbstractValidator<PurchaseNotificat
     {
         RuleFor(x => x.Message)
             .NotEmpty()
-            .MaximumLength(255);  // Ajuste o comprimento conforme necessário
-
+            .MaximumLength(255); 
         RuleFor(x => x.TotalValue)
-            .GreaterThan(0);  // Ajuste conforme necessário
+            .GreaterThan(0); 
 
         RuleFor(x => x.RecipientId)
-            .NotEmpty();  // Ajuste conforme necessário
+            .NotEmpty();  
 
         RuleFor(x => x.ProductId)
-            .NotEmpty();  // Ajuste conforme necessário
+            .NotEmpty();  
 
         RuleFor(x => x.ProductName)
             .NotEmpty()
-            .MaximumLength(100);  // Ajuste o comprimento conforme necessário
+            .MaximumLength(100); 
 
         RuleFor(x => x.ProductQuantity)
-            .GreaterThan(0);  // Ajuste conforme necessário
+            .GreaterThan(0); 
 
         RuleFor(x => x.ProductWeight)
-            .GreaterThanOrEqualTo(0);  // Ajuste conforme necessário
+            .GreaterThanOrEqualTo(0);  
 
         RuleFor(x => x.RecipientAddress)
             .NotEmpty()
-            .MaximumLength(255);  // Ajuste o comprimento conforme necessário
+            .MaximumLength(255);  
 
         RuleFor(x => x.RecipientZipCode)
             .NotEmpty()
-            .MaximumLength(20);  // Ajuste o comprimento conforme necessário
+            .MaximumLength(20); 
     }
 }
