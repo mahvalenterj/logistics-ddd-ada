@@ -1,39 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using FluentValidation;
-using System;
-using System.Threading.Tasks;
-using System.Threading;
 
+// Nome da Rota
 [Route("api/[controller]")]
 [ApiController]
 public class PurchaseNotificationController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    IMediator _mediator;
 
     public PurchaseNotificationController(IMediator mediator)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreatePurchaseNotificationRequest request)
+    public async Task<IActionResult> Create(CreatePurchaseNotificationRequest request)
     {
-        try
-        {
-            var purchaseNotification = await _mediator.Send(request);
-            return Ok(purchaseNotification);
-        }
-        catch (ValidationException ex)
-        {
-            // Erros de validação
-            return BadRequest(new { Errors = ex.Errors });
-        }
-        catch (Exception ex)
-        {
-            // Outras exceções
-            // Registre a exceção em log se necessário
-            return StatusCode(500, "Ocorreu um erro interno no servidor.");
-        }
+        var purchasenotification = await _mediator.Send(request);
+        return Ok(purchasenotification);
     }
+
+    /*[HttpPut("{id}")]
+    public async Task<ActionResult<UpdatePurchaseNotificationResponse>>
+        Update(Guid id, UpdatePurchaseNotificationRequest request, CancellationToken cancellationToken)
+    {
+        if (id != request.Id)
+        {
+            return BadRequest();
+        }
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken)
+    {
+        if (id is null)
+        {
+            return BadRequest();
+        }
+
+        var deleteRequest = new DeletePurchaseNotificationRequest(id.Value);
+        var response = await _mediator.Send(deleteRequest, cancellationToken);
+        return Ok(response);
+    }
+    [HttpGet]
+    public async Task<ActionResult<List<GetAllPurchaseNotificationResponse>>> GetAll (CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new GetAllPurchaseNotificationRequest(), cancellationToken);
+        return Ok(response);    } */
 }

@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using techLogistica.Domain.Interfaces;
 
-namespace techLogistica.Persistence.Repositories
+public class RecipientRepository : BaseRepository<Recipient>, IRecipientRepository
 {
-    public class RecipientRepository
+    public RecipientRepository(AppDbContext context) : base(context)
     {
+
     }
+    public async Task<Recipient> GetByIdAsync(Guid recipientId, CancellationToken cancellationToken)
+    {
+        return await Context.Recipients
+            .FirstOrDefaultAsync(x => x.Id == recipientId, cancellationToken);
+    }
+
 }

@@ -10,14 +10,14 @@ namespace techLogistica.Domain.Entities
     public class Product : BaseEntity
     {
         // Propriedades específicas do produto
-        public string ProductName { get; set; }
+        public string? ProductName { get; set; }
         public int ProductQuantity { get; set; }
         public decimal ProductWeight { get; set; }
 
        
         
         // Relacionamento com notificações de compra
-        public ICollection<PurchaseNotification> PurchaseNotifications { get; set; }
+        public ICollection<PurchaseNotification>? PurchaseNotifications { get; set; }
 
 
         }

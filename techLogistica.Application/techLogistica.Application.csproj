@@ -1,49 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Shared\Exceptions\**" />
-    <Compile Remove="UseCases\CreateProducts\**" />
-    <EmbeddedResource Remove="Shared\Exceptions\**" />
-    <EmbeddedResource Remove="UseCases\CreateProducts\**" />
-    <None Remove="Shared\Exceptions\**" />
-    <None Remove="UseCases\CreateProducts\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\techLogistica.Domain\techLogistica.Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-    <None Remove="MediatR" />
-    <None Remove="FluentValidation" />
-    <None Remove="Services\" />
-    <None Remove="Shared\" />
-    <None Remove="UseCases\" />
-    <None Remove="Shared\Behavior\" />
-    <None Remove="Shared\Exceptions\" />
-    <None Remove="FluentValidation.DependencyInjectionExtensions" />
-    <None Remove="UseCases\CreatePolicies\" />
-    <None Remove="UseCases\CreateProducts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Shared\" />
-    <Folder Include="Shared\Behavior\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.8.0" />
+	<ItemGroup>
+		<ProjectReference Include="..\techLogistica.Domain\techLogistica.Domain.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+		<None Remove="MediatR" />
+		<None Remove="FluentValidation" />
+		<None Remove="Services\" />
+		<None Remove="Shared\" />
+		<None Remove="UseCases\" />
+		<None Remove="Shared\Behavior\" />
+		<None Remove="Shared\Exceptions\" />
+		<None Remove="FluentValidation.DependencyInjectionExtensions" />
+		<None Remove="UseCases\CreatePurchaseNotification\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Services\" />
+		<Folder Include="Shared\" />
+		<Folder Include="Shared\Behavior\" />
+		<Folder Include="Shared\Exceptions\" />
+		<Folder Include="UseCases\CreatePurchaseNotification" />
+	</ItemGroup>
+	<ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+  	</ItemGroup>
 </Project>

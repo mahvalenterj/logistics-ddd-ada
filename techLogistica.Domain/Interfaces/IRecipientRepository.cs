@@ -1,5 +1,9 @@
 ﻿using techLogistica.Domain.Entities;
 
-public interface IRecipientRepository : IBaseRepository<Recipient>
-{
+namespace techLogistica.Domain.Interfaces
+{public interface IRecipientRepository : IBaseRepository<Recipient>
+
+    {
+        Task<Recipient> GetByIdAsync(Guid recipientId, CancellationToken cancellationToken);
+    }
 }

@@ -5,7 +5,8 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
                                               where TRequest : IRequest<TResponse>
 {
 
-    private readonly IValidator<TRequest> _validator;
+    
+    readonly IValidator<TRequest> _validator;
 
     public ValidationBehavior(IValidator<TRequest> validator)
     {

@@ -2,7 +2,8 @@
 // Responsabilidade: gerenciar as transações e o commit das operações de BD
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly AppDbContext _context;
+    
+    readonly AppDbContext _context;
     public UnitOfWork(AppDbContext context)
     {
         _context = context; // representaçção de banco de dados

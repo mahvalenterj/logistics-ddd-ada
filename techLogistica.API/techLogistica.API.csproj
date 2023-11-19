@@ -7,31 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.8.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\techLogistica.Application\techLogistica.Application.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\techLogistica.Persistence\techLogistica.Persistence.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+	  <ProjectReference Include="..\techLogistica.Persistence\techLogistica.Persistence.csproj">
+		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+	  </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="BD\" />
-    <None Remove="Extensions\" />
-    <None Remove="techLogistica.db" />
-    <None Remove="techLogistica.db-wal" />
-    <None Remove="techLogistica.db-shm" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="BD\" />
+		<None Remove="Extensions\" />
+		<None Remove="dataBase.db" />
+		<None Remove="dataBase.db-wal" />
+		<None Remove="dataBase.db-shm" />
+	</ItemGroup>
   <ItemGroup>
     <Folder Include="BD\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
+  
 </Project>
