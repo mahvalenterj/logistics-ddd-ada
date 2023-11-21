@@ -27,7 +27,7 @@ using techLogistica.Domain.Interfaces;
             services.AddScoped<IPurchaseNotificationRepository, PurchaseNotificationRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IRecipientRepository, RecipientRepository>();
-
+            services.AddScoped<IDeliveryRepository, DeliveryRepository>();
 
 
     }
