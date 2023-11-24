@@ -4,9 +4,7 @@ public class RecipientValidator : AbstractValidator<Recipient>
 {
     public RecipientValidator()
     {
-        RuleFor(x => x.RecipientId)
-            .NotEmpty();
-            
+                    
         RuleFor(x => x.RecipientName)
             .NotEmpty(); 
 

@@ -10,9 +10,9 @@ public class PurchaseNotificationRepository : BaseRepository<PurchaseNotificatio
     {
 
     }
-    public async Task<PurchaseNotification> GetByIdAsync(Guid notificationId, CancellationToken cancellationToken)
+    public async Task<PurchaseNotification> GetByIdAsync(Guid purchasenotificationId, CancellationToken cancellationToken)
     {
         return await Context.PurchaseNotifications
-            .FirstOrDefaultAsync(x => x.Id == notificationId, cancellationToken);
+            .FirstOrDefaultAsync(x => x.Id == purchasenotificationId, cancellationToken);
     }
 }

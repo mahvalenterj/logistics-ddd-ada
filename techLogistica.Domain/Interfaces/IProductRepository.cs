@@ -2,4 +2,5 @@
 
 public interface IProductRepository :IBaseRepository<Product>
 {
+    Task<Product> GetByIdAsync(Guid productId, CancellationToken cancellationToken);
 }
