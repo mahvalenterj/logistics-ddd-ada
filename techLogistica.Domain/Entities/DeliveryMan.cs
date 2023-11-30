@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace techLogistica.Domain.Entities
+/*namespace techLogistica.Domain.Entities
 {
     public class DeliveryMan : BaseEntity
     {
@@ -16,4 +16,4 @@ namespace techLogistica.Domain.Entities
         // Relacionamento com entregas
         public ICollection<Delivery>? Deliveries { get; set; }
     }
-}
+}*/

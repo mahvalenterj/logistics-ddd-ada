@@ -9,12 +9,12 @@ using System.Threading.Tasks;
     {
         // Propriedades específicas do destinatário
         
-        public string RecipientName { get; set; }
-        public string RecipientAddress { get; set; }
-        public string RecipientZipCode { get; set; }
+        public Recipient? RecipientName { get; set; }
+        public Recipient? RecipientAddress { get; set; }
+        public Recipient? RecipientZipCode { get; set; }
 
         // Relacionamento com notificações de compra
-        public ICollection<PurchaseNotification>? PurchaseNotifications { get; set; }
+        public ICollection<PurchaseNotification> PurchaseNotifications { get; set; }
 }
 
 

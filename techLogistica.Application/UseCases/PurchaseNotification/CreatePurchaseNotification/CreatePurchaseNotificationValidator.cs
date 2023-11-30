@@ -7,8 +7,9 @@ public class PurchaseNotificationValidator : AbstractValidator<PurchaseNotificat
         RuleFor(x => x.Message)
             .NotEmpty()
             .MaximumLength(255); 
+
         RuleFor(x => x.TotalValue)
-            .GreaterThan(0); 
+            .GreaterThan(0);
 
         RuleFor(x => x.RecipientId)
             .NotEmpty();  

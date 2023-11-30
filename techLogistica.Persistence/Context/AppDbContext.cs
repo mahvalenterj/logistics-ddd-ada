@@ -15,26 +15,28 @@ using techLogistica.Domain.Entities;
         public DbSet<PurchaseNotification> PurchaseNotifications { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Recipient> Recipients { get; set; }
-        public DbSet<Delivery> Deliveries { get; set; }
 
-        public DbSet<DeliveryMan> DeliveryMen { get; set; }
-
-        
-
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        modelBuilder.Entity<PurchaseNotification>()
-       .Property(r => r.RecipientId)
-       .HasDefaultValue(null);
+            // Relacionamento entre PurchaseNotification e Recipient
+            modelBuilder.Entity<Recipient>()
+                .HasMany(r => r.PurchaseNotifications)
+                .WithOne(pn => pn.Recipient)
+                .HasForeignKey(pn => pn.RecipientId);
 
-        modelBuilder.Entity<PurchaseNotification>()
-            .Property(r => r.ProductId)
-            .HasDefaultValue(null);
+            // Relacionamento entre PurchaseNotification e PurchasedProduct
+            modelBuilder.Entity<Product>()
+                .HasOne(pp => pp.PurchaseNotification)
+                .WithMany(pn => pn.Products)
+                .HasForeignKey(pp => pp.PurchaseNotificationId);
 
-       
+            base.OnModelCreating(modelBuilder);
+        }
+
+         
+        
     }
-    }
+    
 
 
 //modelBuilder.Entity<User>().Ignore(user => user.Perfil);

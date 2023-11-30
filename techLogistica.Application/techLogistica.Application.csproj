@@ -7,8 +7,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Shared\Exceptions\**" />
 	  <Compile Remove="UseCases\CreatePurchaseNotification\**" />
+	  <EmbeddedResource Remove="Shared\Exceptions\**" />
 	  <EmbeddedResource Remove="UseCases\CreatePurchaseNotification\**" />
+	  <None Remove="Shared\Exceptions\**" />
 	  <None Remove="UseCases\CreatePurchaseNotification\**" />
 	</ItemGroup>
 
@@ -31,7 +34,6 @@
 		<Folder Include="Services\" />
 		<Folder Include="Shared\" />
 		<Folder Include="Shared\Behavior\" />
-		<Folder Include="Shared\Exceptions\" />
 	</ItemGroup>
 	<ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

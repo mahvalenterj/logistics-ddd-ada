@@ -3,7 +3,7 @@ using techLogistica.Domain.Enums;
 
 namespace techLogistica.Domain.Entities;
 
-public class Message
+/*public class Message
 {
     public Guid Id { get; set; }
     public string Sender { get; set; }
@@ -11,4 +11,4 @@ public class Message
     public string Content { get; set; }
     public DateTime Timestamp { get; set; }
     public MessageStatus Status { get; set; }
-}
+}*/

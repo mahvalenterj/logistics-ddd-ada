@@ -3,7 +3,6 @@ using techLogistica.Domain.Entities;
 
 public sealed record CreatePurchaseNotificationRequest(
     string Message, decimal TotalValue,
-    Guid RecipientId, Guid ProductId,
-    string ProductName, int ProductQuantity, decimal ProductWeight,
-    string RecipientAddress, string RecipientZipCode) :
+    Guid Id, string ProductName, Product ProductQuantity, Product ProductWeight,
+    Recipient RecipientAddress, Recipient RecipientZipCode) :
     IRequest<CreatePurchaseNotificationResponse>;

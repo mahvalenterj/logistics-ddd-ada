@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using techLogistica.Domain.Interfaces;
 
-public class DeliveryRepository : BaseRepository<Delivery>, IDeliveryRepository
+/*public class DeliveryRepository : BaseRepository<Delivery>, IDeliveryRepository
 {
     public DeliveryRepository(AppDbContext context) : base(context)
     {
@@ -16,4 +16,4 @@ public class DeliveryRepository : BaseRepository<Delivery>, IDeliveryRepository
             .FirstOrDefaultAsync(x => x.Id == deliveryId, cancellationToken);
     }
 
-}
+}*/

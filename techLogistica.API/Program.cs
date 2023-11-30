@@ -1,4 +1,4 @@
-﻿
+﻿using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +21,7 @@ var app = builder.Build();
 var serviceProvider = app.Services;
 
 // Obtenha o validador requerido
-//var validator = serviceProvider.GetRequiredService<IValidator<CreatePurchaseNotificationRequest>>();
+var validator = serviceProvider.GetRequiredService<IValidator<CreatePurchaseNotificationRequest>>();
 
 // Agora você pode fazer o que precisa com o validador, se necessário
 

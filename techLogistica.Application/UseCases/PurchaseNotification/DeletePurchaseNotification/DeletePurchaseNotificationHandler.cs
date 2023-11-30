@@ -18,13 +18,17 @@ public sealed class DeletePurchaseNotificationHandler :
         _mapper = mapper;
     }
 
-    public async Task<DeletePurchaseNotificationResponse?> Handle(DeletePurchaseNotificationRequest request,
+    public async Task<DeletePurchaseNotificationResponse> Handle(DeletePurchaseNotificationRequest request,
                                                  CancellationToken cancellationToken)
     {
-
+        //Estudar o uso do Editorconfig
         var purchasenotification = await _purchasenotificationRepository.Get(request.Id, cancellationToken);
 
+#pragma warning disable CS8603 // Possível retorno de referência nula.
         if (purchasenotification == null) return default;
+#pragma warning restore CS8603 // Possível retorno de referência nula.
+
+        //Procurar outra solução
 
         _purchasenotificationRepository.Delete(purchasenotification);
         await _unitOfWork.Commit(cancellationToken);
