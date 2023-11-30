@@ -1,35 +1,35 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using techLogistica.Domain.Interfaces;
 
 // Define um método de extensão
-
-
-    public static class ServiceExtensions
+public static class ServiceExtensions
+{
+    // Usado para configurar a camada de persistencia no EF Core
+    public static void ConfigurePersistenceApp(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
-        // Usado para configurar a camada de persistencia no EF Core
-        public static void ConfigurePersistenceApp(
-            this IServiceCollection services,
-            IConfiguration configuration)
+        // usado para recuperar a string de conexão no presentation
+        var connectionString = configuration.GetConnectionString("Sqlite");
+
+        // Definindo o profedor 
+        services.AddDbContext<AppDbContext>(options => options
+        .UseSqlite(connectionString));
+
+        services.AddStackExchangeRedisCache(options =>
         {
-            // usado para recuperar a string de conexão no presentation
-            var connectionString = configuration.GetConnectionString("Dbconnect");
+            options.Configuration = "";
+            options.InstanceName = "TechLogistica"; // Opcional: forneça um nome de instância se necessário
+        });
 
-            // Definindo o provedor 
-            services.AddDbContext<AppDbContext>(options => options
-            .UseSqlite(connectionString));
-
-            // Adicionando escopos de instancias unica criado e compartilhado
-            // no mesmo escopo http que utilizar
-            // para cada transação teremos um escopo delesva
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IPurchaseNotificationRepository, PurchaseNotificationRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IRecipientRepository, RecipientRepository>();
-            //services.AddScoped<IDeliveryRepository, DeliveryRepository>();
-
-
+        // Adicionando escopos de instancias unica criado e compartilhado
+        // no mesmo escopo http que utilizar
+        // para cada transação teremos um escopo delesva
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IKafkaProducer, KafkaProducer>();
+        services.AddScoped<IKafkaConsumer, KafkaConsumer>();
+        services.AddScoped<IProductRepository, ProductRepository>();        
+        services.AddScoped<IRedisRepository, RedisRepository>();
     }
-    }
-
+}

@@ -2,36 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-	<StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
-
-	  <Nullable>enable</Nullable>
+    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.7.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\techLogistica.Application\techLogistica.Application.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-	  <ProjectReference Include="..\techLogistica.Persistence\techLogistica.Persistence.csproj">
-		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-	  </ProjectReference>
+    <ProjectReference Include="..\techLogistica.Persistence\techLogistica.Persistence.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
-	<ItemGroup>
-		<None Remove="BD\" />
-		<None Remove="Extensions\" />
-		<None Remove="dataBase.db" />
-		<None Remove="dataBase.db-wal" />
-		<None Remove="dataBase.db-shm" />
-	</ItemGroup>
   <ItemGroup>
-    <Folder Include="BD\" />
+    <None Remove="Extensions\" />
+    <None Remove="BD\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="BD\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-  
 </Project>
