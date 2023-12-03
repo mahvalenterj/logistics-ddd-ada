@@ -1,10 +1,9 @@
-﻿/*using AutoMapper;
+﻿using AutoMapper;
 
-public sealed class GetAllUserMapper : Profile
+public sealed class GetAllPurchaseNotificationMapper : Profile
 {
-    public GetAllUserMapper()
+    public GetAllPurchaseNotificationMapper()
     {
-        CreateMap<User, GetAllUserResponse>();
+        CreateMap<PurchaseNotification, GetAllPurchaseNotificationResponse>();
     }
 }
-*/
