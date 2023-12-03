@@ -1,6 +1,12 @@
-﻿public interface IUnitOfWork
+﻿
+namespace techLogistica.Domain.Interfaces
 {
-    Task Commit(CancellationToken cancellationToken);
-}
 
-// tratando operações a transação
+    public interface IUnitOfWork
+    {
+        Task Commit(CancellationToken cancellationToken);
+    }
+
+    // tratando operações a transação
+
+}

@@ -1,31 +1,40 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Entities;
 using techLogistica.Domain.Interfaces;
 
 public class CreateDeliveryPersonHandler :
-       IRequestHandler<CreateDeliveryPersonRequest, CreateDeliveryPersonResponse>
+    IRequestHandler<CreateDeliveryPersonRequest, CreateDeliveryPersonResponse>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IDeliveryRepository _deliveryRepository;
-    private readonly IMapper _mapper;
+    private readonly IUnitOfWork unitOfWork;
+    private readonly IMapper mapper;
 
-    public CreateDeliveryPersonHandler(IUnitOfWork unitOfWork,
-        IDeliveryRepository deliveryRepository, IMapper mapper)
+    public CreateDeliveryPersonHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        _unitOfWork = unitOfWork;
-        _deliveryRepository = deliveryRepository;
-        _mapper = mapper;
+        this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public async Task<CreateDeliveryPersonResponse> Handle(CreateDeliveryPersonRequest request,
         CancellationToken cancellationToken)
     {
-        var delivery = _mapper.Map<Delivery>(request);
+        // Lógica para lidar com a criação de um entregador
 
-        _deliveryRepository.Create(delivery);
+        // Exemplo: Mapear a requisição para a entidade de entregador
+        var deliveryPerson = mapper.Map<DeliveryPerson>(request);
 
-        await _unitOfWork.Commit(cancellationToken);
+        // Exemplo: Salvar no repositório
+        unitOfWork.DeliveryPersonRepository.Create(deliveryPerson);
 
-        return _mapper.Map<CreateDeliveryPersonResponse>(delivery);
+        // Exemplo: Commit das alterações no banco de dados
+        await unitOfWork.Commit(cancellationToken);
+
+        // Exemplo: Mapear a entidade de entregador para a resposta
+        var response = mapper.Map<CreateDeliveryPersonResponse>(deliveryPerson);
+
+        return response;
     }
 }

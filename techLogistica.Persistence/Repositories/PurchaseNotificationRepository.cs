@@ -4,15 +4,19 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using techLogistica.Domain.Interfaces;
 
-public class PurchaseNotificationRepository : BaseRepository<PurchaseNotification>, IPurchaseNotificationRepository
-{
-    public PurchaseNotificationRepository(AppDbContext context) : base(context)
-    {
+namespace techLogistica.Persistence.Repositories
 
-    }
-    public async Task<PurchaseNotification> GetByIdAsync(Guid purchasenotificationId, CancellationToken cancellationToken)
+{
+    public class PurchaseNotificationRepository : BaseRepository<PurchaseNotification>, IPurchaseNotificationRepository
     {
-        return await Context.PurchaseNotifications
-            .FirstOrDefaultAsync(x => x.Id == purchasenotificationId, cancellationToken);
+        public PurchaseNotificationRepository(AppDbContext context) : base(context)
+        {
+
+        }
+        public async Task<PurchaseNotification> GetByIdAsync(Guid purchasenotificationId, CancellationToken cancellationToken)
+        {
+            return await Context.PurchaseNotifications
+                .FirstOrDefaultAsync(x => x.Id == purchasenotificationId, cancellationToken);
+        }
     }
 }

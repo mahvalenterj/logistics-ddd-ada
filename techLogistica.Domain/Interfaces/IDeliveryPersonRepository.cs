@@ -4,8 +4,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using techLogistica.Domain.Entities;
 
-public interface IDeliveryPersonRepository : IBaseRepository<DeliveryPerson>
+namespace techLogistica.Domain.Interfaces
 {
-    Task<DeliveryPerson> GetByIdAsync(Guid deliveryPersonId, CancellationToken cancellationToken);
-  
+    public interface IDeliveryPersonRepository : IBaseRepository<DeliveryPerson>
+    {
+        Task<DeliveryPerson> GetByIdAsync(Guid deliveryPersonId, CancellationToken cancellationToken);
+
+    }
+
 }

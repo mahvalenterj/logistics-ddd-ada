@@ -1,5 +1,11 @@
-﻿public interface IRedisRepository
+﻿
+
+namespace techLogistica.Domain.Interfaces
 {
-    void InsertValueRedis(string id, string key, string value);
-    Task<Cache> GetKeyRedis(string key);
+    public interface IRedisRepository
+    {
+        void InsertValueRedis(string id, string key, string value);
+        Task<Cache> GetKeyRedis(string key);
+    }
+
 }

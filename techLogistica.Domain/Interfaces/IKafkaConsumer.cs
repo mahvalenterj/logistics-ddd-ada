@@ -1,9 +1,14 @@
-﻿public interface IKafkaConsumer
+﻿
+namespace techLogistica.Domain.Interfaces
 {
-    event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
-    void Subscribe(string topic, string group);
-    Task StartConsumingAsync(CancellationToken cancellationToken);
-    void StopConsuming();
+    public interface IKafkaConsumer
+    {
+        event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
+        void Subscribe(string topic, string group);
+        Task StartConsumingAsync(CancellationToken cancellationToken);
+        void StopConsuming();
+    }
+
 }
 
 /*

@@ -1,30 +1,44 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Entities;
+using techLogistica.Domain.Interfaces;
 
-public class CreateDeliveryPersonHandler :
-       IRequestHandler<CreateDeliveryPersonRequest, CreateDeliveryPersonResponse>
+
+namespace techLogistica.Application.UseCases
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IDeliveryPersonRepository _deliveryPersonRepository;
-    private readonly IMapper _mapper;
-
-    public CreateDeliveryPersonHandler(IUnitOfWork unitOfWork,
-        IDeliveryPersonRepository deliveryPersonRepository, IMapper mapper)
+    public class CreateDeliveryPersonHandler :
+    IRequestHandler<CreateDeliveryPersonRequest, CreateDeliveryPersonResponse>
     {
-        _unitOfWork = unitOfWork;
-        _deliveryPersonRepository = deliveryPersonRepository;
-        _mapper = mapper;
-    }
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-    public async Task<CreateDeliveryPersonResponse> Handle(CreateDeliveryPersonRequest request,
-        CancellationToken cancellationToken)
-    {
-        var deliveryPerson = _mapper.Map<DeliveryPerson>(request);
+        public CreateDeliveryPersonHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
 
-        _deliveryPersonRepository.Create(deliveryPerson);
+        public async Task<CreateDeliveryPersonResponse> Handle(CreateDeliveryPersonRequest request,
+            CancellationToken cancellationToken)
+        {
+            // Lógica para lidar com a criação de um entregador
 
-        await _unitOfWork.Commit(cancellationToken);
+            // Exemplo: Mapear a requisição para a entidade de entregador
+            var deliveryPerson = mapper.Map<DeliveryPerson>(request);
 
-        return _mapper.Map<CreateDeliveryPersonResponse>(deliveryPerson);
+            // Exemplo: Salvar no repositório
+            unitOfWork.DeliveryPersonRepository.Create(deliveryPerson);
+
+            // Exemplo: Commit das alterações no banco de dados
+            await unitOfWork.Commit(cancellationToken);
+
+            // Exemplo: Mapear a entidade de entregador para a resposta
+            var response = mapper.Map<CreateDeliveryPersonResponse>(deliveryPerson);
+
+            return response;
+        }
     }
 }

@@ -22,14 +22,14 @@ public class DeliveryPersonController : ControllerBase
         return Ok(deliveryPerson);
     }
 
-    [HttpGet]
+    /*[HttpGet]
     public async Task<ActionResult<List<GetAllDeliveryPersonResponse>>> GetAll(CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetAllDeliveryPersonRequest(), cancellationToken);
         return Ok(response);
-    }
+    }*/
 
-    [HttpDelete("{id}")]
+    /*[HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken)
     {
         if (id is null)
@@ -40,5 +40,5 @@ public class DeliveryPersonController : ControllerBase
         var deleteRequest = new DeleteDeliveryPersonRequest(id.Value);
         var response = await _mediator.Send(deleteRequest, cancellationToken);
         return Ok(response);
-    }
+    }*/
 }

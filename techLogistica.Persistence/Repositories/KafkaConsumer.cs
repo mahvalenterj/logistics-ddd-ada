@@ -1,56 +1,62 @@
 ﻿using Confluent.Kafka;
+using techLogistica.Domain.Interfaces;
 using static Confluent.Kafka.ConfigPropertyNames;
 
-public class KafkaConsumer : IKafkaConsumer
+namespace techLogistica.Persistence.Repositories
+
 {
-    private bool isConsuming = false;
-
-    public event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
-    private IConsumer<Ignore, string> consumer;
-
-    public void Subscribe(string topic, string group)
+    public class KafkaConsumer : IKafkaConsumer
     {
-        var consumerConfig = new ConsumerConfig
+        private bool isConsuming = false;
+
+        public event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
+        private IConsumer<Ignore, string> consumer;
+
+        public void Subscribe(string topic, string group)
         {
-            BootstrapServers = "localhost:2181", // Endereço do seu servidor Kafka
-            GroupId = group, // Identificador de grupo para o consumidor
-            AutoOffsetReset = AutoOffsetReset.Earliest, // Define onde começar a consumir mensagens se o offset inicial não estiver disponível
-            EnableAutoCommit = false
-        };
-
-        consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
-
-        consumer.Subscribe(topic);
-    }
-
-    public async Task StartConsumingAsync(CancellationToken cancellationToken)
-    {
-        isConsuming = true;
-
-        while (isConsuming)
-        {
-            try
+            var consumerConfig = new ConsumerConfig
             {
-                var consumeResult = await Task.Run(() => consumer.Consume(cancellationToken), cancellationToken);
+                BootstrapServers = "localhost:2181", // Endereço do seu servidor Kafka
+                GroupId = group, // Identificador de grupo para o consumidor
+                AutoOffsetReset = AutoOffsetReset.Earliest, // Define onde começar a consumir mensagens se o offset inicial não estiver disponível
+                EnableAutoCommit = false
+            };
 
-                if (consumeResult != null && consumeResult.Message != null)
+            consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
+
+            consumer.Subscribe(topic);
+        }
+
+        public async Task StartConsumingAsync(CancellationToken cancellationToken)
+        {
+            isConsuming = true;
+
+            while (isConsuming)
+            {
+                try
                 {
-                    string message = consumeResult.Message.Value;
-                    OnMessageReceived?.Invoke(this, new MessageReceivedEventArgs { Message = message });
+                    var consumeResult = await Task.Run(() => consumer.Consume(cancellationToken), cancellationToken);
+
+                    if (consumeResult != null && consumeResult.Message != null)
+                    {
+                        string message = consumeResult.Message.Value;
+                        OnMessageReceived?.Invoke(this, new MessageReceivedEventArgs { Message = message });
+                    }
+                    StopConsuming();
                 }
-                StopConsuming();
-            }
-            catch
-            {
+                catch
+                {
+
+                }
 
             }
-            
+        }
+
+        public void StopConsuming()
+        {
+            isConsuming = false;
+            consumer.Close();
         }
     }
 
-    public void StopConsuming()
-    {
-        isConsuming = false;
-        consumer.Close();
-    }
 }
