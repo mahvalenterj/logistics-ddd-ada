@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
+using System;
 
-public class DeliveryValidator : AbstractValidator<CreateDeliveryPersonRequest>
+public class DeliveryPersonValidator : AbstractValidator<CreateDeliveryPersonRequest>
 {
-    public DeliveryValidator()
+    public DeliveryPersonValidator()
     {
         RuleFor(x => x.Message)
             .NotEmpty()

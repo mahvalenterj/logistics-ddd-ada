@@ -39,7 +39,9 @@
 		<Folder Include="Services\" />
 		<Folder Include="Shared\Behavior\" />
 		<Folder Include="Shared\Exceptions\" />
-		<Folder Include="UseCases\Cache\" />		
+		<Folder Include="UseCases\Cache\" />
+		<Folder Include="UseCases\DeliveryPerson\GetAllDeliveryPerson\" />
+		<Folder Include="UseCases\DeliveryPerson\DeleteDeliveryPerson\" />		
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="..\.editorconfig" Link=".editorconfig" />

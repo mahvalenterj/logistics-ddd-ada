@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using System;
 
-public sealed record CreateDeliveryRequest(
+public sealed record CreateDeliveryPersonRequest(
     string Message,
     Guid Id,
     DateTime DeliveryDate,
     Guid PurchaseNotificationId,
     Guid ShippingId,
-    Guid DeliveryPersonId) : IRequest<CreateDeliveryResponse>;
+    Guid DeliveryPersonId) : IRequest<CreateDeliveryPersonResponse>;
 

@@ -5,7 +5,7 @@ public sealed class CreateDeliveryPersonMapper : Profile
 {
     public CreateDeliveryPersonMapper()
     {
-        CreateMap<CreateDeliveryPersonRequest, Delivery>();
-        CreateMap<Delivery, CreateDeliveryPersonResponse>();
+        CreateMap<CreateDeliveryPersonRequest, DeliveryPerson>();
+        CreateMap<DeliveryPerson, CreateDeliveryPersonResponse>();
     }
 }

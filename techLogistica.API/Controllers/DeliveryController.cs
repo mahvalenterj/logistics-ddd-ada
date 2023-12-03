@@ -32,7 +32,7 @@ public class DeliveryController : ControllerBase
     }*/
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateDeliveryRequest request)
+    public async Task<IActionResult> Create(CreateDeliveryPersonRequest request)
     {
         var delivery = await _mediator.Send(request);
         return Ok(delivery);
