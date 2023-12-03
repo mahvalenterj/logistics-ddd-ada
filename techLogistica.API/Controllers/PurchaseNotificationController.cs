@@ -20,6 +20,13 @@ public class PurchaseNotificationController : ControllerBase
         return Ok(purchasenotification);
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<GetAllPurchaseNotificationResponse>>> GetAll(CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new GetAllPurchaseNotificationRequest(), cancellationToken);
+        return Ok(response);
+    }
+
     /*[HttpPut("{id}")]
     public async Task<ActionResult<UpdatePurchaseNotificationResponse>>
         Update(Guid id, UpdatePurchaseNotificationRequest request, CancellationToken cancellationToken)
@@ -45,11 +52,6 @@ public class PurchaseNotificationController : ControllerBase
         return Ok(response);
     }*/
 
-    /*[HttpGet]
-    public async Task<ActionResult<List<GetAllPurchaseNotificationResponse>>> GetAll (CancellationToken cancellationToken)
-    {
-        var response = await _mediator.Send(new GetAllPurchaseNotificationRequest(), cancellationToken);
-        return Ok(response);    
-    }*/
-    
+
+
 }
