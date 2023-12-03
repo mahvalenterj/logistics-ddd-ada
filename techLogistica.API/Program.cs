@@ -1,4 +1,5 @@
-﻿
+﻿using techLogistica.Persistence.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,10 +20,10 @@ var app = builder.Build();
 // Esse método precisamos criar na mão para subir nosso BD a nossa aplicação
 BD.CreateDatabase(app);
 
-app.UseSwagger();
-app.UseSwaggerUI();
 
 app.UseCors();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapControllers();
 app.Run();
 

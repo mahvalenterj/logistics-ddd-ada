@@ -12,7 +12,7 @@ public class KafkaConsumer : IKafkaConsumer
     {
         var consumerConfig = new ConsumerConfig
         {
-            BootstrapServers = "localhost:9092", // Endereço do seu servidor Kafka
+            BootstrapServers = "localhost:2181", // Endereço do seu servidor Kafka
             GroupId = group, // Identificador de grupo para o consumidor
             AutoOffsetReset = AutoOffsetReset.Earliest, // Define onde começar a consumir mensagens se o offset inicial não estiver disponível
             EnableAutoCommit = false

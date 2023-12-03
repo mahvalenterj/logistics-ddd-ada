@@ -12,7 +12,7 @@ public class KafkaProducer : IKafkaProducer
     {
         var config = new ProducerConfig
         {
-            BootstrapServers = "localhost:9092", // Endereço do servidor Kafka
+            BootstrapServers = "localhost:2181", // Endereço do servidor Kafka
         };
 
         _producer = new ProducerBuilder<string, string>(config).Build();
@@ -30,17 +30,14 @@ public class KafkaProducer : IKafkaProducer
             Status = "em processamento"
             
         };
-        // Serializa a mensagem e envia para o Kafka
         string serializedMessage = JsonSerializer.Serialize(message);
 
 
         var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string> { Value = serializedMessage });
 
-        // Verificar se a mensagem foi entregue com sucesso e lidar com erros, se necessário
         if (deliveryReport.Status == PersistenceStatus.NotPersisted)
         {
             message.Status = "com erro";
-            // Lidar com erros
             return message;
         }
         else
@@ -63,7 +60,6 @@ public class KafkaProducer : IKafkaProducer
             Status = "em processamento"
 
         };
-        // Serializa a mensagem e envia para o Kafka
         string serializedMessage = JsonSerializer.Serialize(message);
 
 
@@ -76,7 +72,6 @@ public class KafkaProducer : IKafkaProducer
             {
                 var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string> { Value = serializedMessage }); // Se você precisar de confirmação de entrega, pode verificar deliveryReport.Status.
 
-                // Se chegou até aqui, a mensagem foi enviada com sucesso.
                 message.Status = "com sucesso";
                 
             }
@@ -89,16 +84,15 @@ public class KafkaProducer : IKafkaProducer
                     Console.WriteLine($"Tentando novamente em {retryIntervalMs / 1000} segundos...");
                     System.Threading.Thread.Sleep(retryIntervalMs);
                     message.Status = "retry";
-                    // Lidar com erros
                     
                 }
                 else
                 {
-                    // Se todas as tentativas falharam, propague a exceção para o chamador.
                     throw;
+#pragma warning disable CS0162 // Código inacessível detectado
                     message.Status = "com erro";
-                    // Lidar com erros
-                    
+#pragma warning restore CS0162 // Código inacessível detectado
+
                 }
             }
        

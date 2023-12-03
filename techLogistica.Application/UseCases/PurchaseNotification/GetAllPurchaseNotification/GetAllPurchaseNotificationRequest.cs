@@ -1,4 +1,4 @@
 ﻿using MediatR;
 
-public sealed record GetAllUserRequest : 
-                   IRequest<List<GetAllUserResponse>>;
+public sealed record GetAllPurchaseNotificationRequest : 
+                   IRequest<List<GetAllPurchaseNotificationResponse>>;

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 
 
-public sealed class CreatePurchaseNotificationMapper : Profile
+public sealed class CalculateShippingMapper : Profile
 {
-    public CreatePurchaseNotificationMapper()
+    public CalculateShippingMapper()
     {
         CreateMap<CreatePurchaseNotificationRequest, PurchaseNotification>();
-        CreateMap<PurchaseNotification, CreatePurchaseNotificationResponse>();
+        CreateMap<PurchaseNotification, CalculateShippingResponse>();
     }
 }

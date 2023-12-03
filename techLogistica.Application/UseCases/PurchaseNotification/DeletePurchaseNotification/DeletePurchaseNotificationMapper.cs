@@ -1,4 +1,4 @@
-using AutoMapper;
+/*using AutoMapper;
 
 public sealed class DeletePurchaseNotificationMapper : Profile
 {
@@ -7,4 +7,4 @@ public sealed class DeletePurchaseNotificationMapper : Profile
         CreateMap<DeletePurchaseNotificationRequest, PurchaseNotification>();
         CreateMap<PurchaseNotification, DeletePurchaseNotificationResponse>();
     }
-}
+}*/

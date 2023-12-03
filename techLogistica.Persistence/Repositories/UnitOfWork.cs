@@ -1,12 +1,14 @@
 ﻿
 // Responsabilidade: gerenciar as transações e o commit das operações de BD
+using Microsoft.EntityFrameworkCore;
+
 public class UnitOfWork : IUnitOfWork
 {
     
     readonly AppDbContext _context;
     public UnitOfWork(AppDbContext context)
     {
-        _context = context; // representaçção de banco de dados
+        _context = context ?? throw new ArgumentNullException(nameof(context)); // representaçção de banco de dados
     }
 
     public async Task Commit(CancellationToken cancellationToken)
@@ -15,3 +17,4 @@ public class UnitOfWork : IUnitOfWork
         await _context.SaveChangesAsync(cancellationToken);
     }
 }
+

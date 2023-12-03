@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using MediatR;
 
-// Nome da Rota
+namespace techLogistica.Api.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
-public class ConsumerController : ControllerBase
+public class ConsumerControler : ControllerBase
 {
     IMediator _mediator;
 
-    public ConsumerController(IMediator mediator)
+    public ConsumerControler(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -19,5 +21,4 @@ public class ConsumerController : ControllerBase
         var message = await _mediator.Send(request);
         return Ok(message);
     }
-
 }

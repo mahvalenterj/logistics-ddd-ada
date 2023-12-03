@@ -1,38 +1,51 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using techLogistica.Domain.Interfaces;
 
-
-public sealed class DeletePurchaseNotificationHandler :
-                    IRequestHandler<DeletePurchaseNotificationRequest, DeletePurchaseNotificationResponse>
+namespace techLogistica.Application.UseCases.PurchaseNotification.DeletePurchaseNotification
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IPurchaseNotificationRepository _purchasenotificationRepository;
-    private readonly IMapper _mapper;
-
-    public DeletePurchaseNotificationHandler(IUnitOfWork unitOfWork,
-                             IPurchaseNotificationRepository purchasenotificationRepository, IMapper mapper)
+    public class DeletePurchaseNotificationHandler :
+        IRequestHandler<DeletePurchaseNotificationRequest, DeletePurchaseNotificationResponse>
     {
-        _unitOfWork = unitOfWork;
-        _purchasenotificationRepository = purchasenotificationRepository;
-        _mapper = mapper;
-    }
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPurchaseNotificationRepository _purchaseNotificationRepository;
+        private readonly IMapper _mapper;
 
-    public async Task<DeletePurchaseNotificationResponse> Handle(DeletePurchaseNotificationRequest request,
-                                                 CancellationToken cancellationToken)
-    {
-        //Estudar o uso do Editorconfig
-        var purchasenotification = await _purchasenotificationRepository.Get(request.Id, cancellationToken);
+        public DeletePurchaseNotificationHandler(
+            IUnitOfWork unitOfWork,
+            IPurchaseNotificationRepository purchaseNotificationRepository,
+            IMapper mapper)
+        {
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _purchaseNotificationRepository = purchaseNotificationRepository ?? throw new ArgumentNullException(nameof(purchaseNotificationRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
 
-#pragma warning disable CS8603 // Possível retorno de referência nula.
-        if (purchasenotification == null) return default;
-#pragma warning restore CS8603 // Possível retorno de referência nula.
+        public async Task<DeletePurchaseNotificationResponse> Handle(
+            DeletePurchaseNotificationRequest request,
+            CancellationToken cancellationToken)
+        {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
 
-        //Procurar outra solução
+            var purchaseNotification =
+                await _purchaseNotificationRepository.Get(request.Id, cancellationToken);
 
-        _purchasenotificationRepository.Delete(purchasenotification);
-        await _unitOfWork.Commit(cancellationToken);
+            if (purchaseNotification is null)
+            {
+                // Not found, you might want to handle this differently (return NotFound() or similar).
+                return null;
+            }
 
-        return _mapper.Map<DeletePurchaseNotificationResponse>(purchasenotification);
+            _purchaseNotificationRepository.Delete(purchaseNotification);
+            await _unitOfWork.Commit(cancellationToken);
+
+            return _mapper.Map<DeletePurchaseNotificationResponse>(purchaseNotification);
+        }
     }
 }

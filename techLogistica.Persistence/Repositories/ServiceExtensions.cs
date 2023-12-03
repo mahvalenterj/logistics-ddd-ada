@@ -1,35 +1,33 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using techLogistica.Domain.Interfaces;
 
-// Define um método de extensão
+namespace techLogistica.Persistence.Repositories;
+
 public static class ServiceExtensions
 {
-    // Usado para configurar a camada de persistencia no EF Core
     public static void ConfigurePersistenceApp(
-        this IServiceCollection services,
-        IConfiguration configuration)
+        this IServiceCollection service, IConfiguration configuration)
     {
-        // usado para recuperar a string de conexão no presentation
-        var connectionString = configuration.GetConnectionString("Sqlite");
+        var connectionString = configuration.GetConnectionString("Dbconnect");
 
-        // Definindo o profedor 
-        services.AddDbContext<AppDbContext>(options => options
-        .UseSqlite(connectionString));
+        service.AddDbContext<AppDbContext>(
+            opt => opt.UseSqlite(connectionString));
 
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = "";
-            options.InstanceName = "TechLogistica"; // Opcional: forneça um nome de instância se necessário
-        });
-
-        // Adicionando escopos de instancias unica criado e compartilhado
-        // no mesmo escopo http que utilizar
-        // para cada transação teremos um escopo delesva
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IKafkaProducer, KafkaProducer>();
-        services.AddScoped<IKafkaConsumer, KafkaConsumer>();
-        services.AddScoped<IProductRepository, ProductRepository>();        
-        services.AddScoped<IRedisRepository, RedisRepository>();
+        service.AddScoped<IUnitOfWork, UnitOfWork>();
+        service.AddScoped<IPurchaseNotificationRepository, PurchaseNotificationRepository>();
+        service.AddScoped<IDeliveryRepository, DeliveryRepository>();
+        service.AddScoped<DeliveryPersonRepository, DeliveryPersonRepository>();
+        service.AddScoped<IShippingRepository, ShippingRepository>();
+        service.AddScoped<IKafkaProducer, KafkaProducer>();
+        service.AddScoped<IKafkaConsumer, KafkaConsumer>();
+        service.AddScoped<IRedisRepository, RedisRepository>();
     }
 }
+

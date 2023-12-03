@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 
 
-public class GetAllUserValidator : AbstractValidator<GetAllUserRequest>
+public class GetAllPurchaseNotificationValidator : AbstractValidator<GetAllPurchaseNotificationRequest>
 {
-    public GetAllUserValidator()
+    public GetAllPurchaseNotificationValidator()
     {
         //sem validação    
     }

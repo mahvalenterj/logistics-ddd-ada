@@ -30,9 +30,9 @@ public class PurchaseNotificationController : ControllerBase
         }
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
-    }
+    }*/
 
-    [HttpDelete("{id}")]
+    /*[HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken)
     {
         if (id is null)
@@ -43,10 +43,13 @@ public class PurchaseNotificationController : ControllerBase
         var deleteRequest = new DeletePurchaseNotificationRequest(id.Value);
         var response = await _mediator.Send(deleteRequest, cancellationToken);
         return Ok(response);
-    }
-    [HttpGet]
+    }*/
+
+    /*[HttpGet]
     public async Task<ActionResult<List<GetAllPurchaseNotificationResponse>>> GetAll (CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetAllPurchaseNotificationRequest(), cancellationToken);
-        return Ok(response);    } */
+        return Ok(response);    
+    }*/
+    
 }

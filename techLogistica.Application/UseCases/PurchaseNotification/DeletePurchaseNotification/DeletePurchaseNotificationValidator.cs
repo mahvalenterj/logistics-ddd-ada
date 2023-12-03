@@ -1,4 +1,4 @@
-using FluentValidation;
+/*using FluentValidation;
 public class DeletePurchaseNotificationValidator :
     AbstractValidator<DeletePurchaseNotificationRequest>
 {
@@ -6,4 +6,4 @@ public class DeletePurchaseNotificationValidator :
     {
         RuleFor(x => x.Id).NotEmpty();
     }
-}
+}*/

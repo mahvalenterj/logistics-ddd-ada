@@ -1,33 +1,9 @@
-﻿// quero garantir que a classe de notificação nao possa ser herdada 
-
-using techLogistica.Domain.Entities;
-
-public class PurchaseNotification : BaseEntity
+﻿public sealed class PurchaseNotification : BaseEntity
 {
-    // Properties specific to the purchase notification
-    public string? Message { get; set; }
-    public decimal TotalValue { get; set; }
+    public string RecipientName { get; set; }
+    public string PurchaseDescription { get; set; }
+    public string RecipientCep { get; set; }
 
-    // Relationship with Recipient
-    public Guid RecipientId { get; set; }
-    public string? RecipientName { get; set; }
-    public string? RecipientAddress { get; set; }
-    public string? RecipientZipCode { get; set; }
-
-    public Recipient Recipient { get; set; }
-
-    // Relationship with Product
-    public Guid ProductId { get; set; }
-  
-    // Properties specific to the Product in the Notification
-    public string? ProductName { get; set; }
-    public int? ProductQuantity { get; set; }
-    public decimal? ProductWeight { get; set; }
-
-
-    public ICollection<Product> Products { get; set; }
-
-
-
+    // Adicione uma propriedade de navegação para representar a entrega associada a esta notificação
+    public Delivery Delivery { get; set; }
 }
-

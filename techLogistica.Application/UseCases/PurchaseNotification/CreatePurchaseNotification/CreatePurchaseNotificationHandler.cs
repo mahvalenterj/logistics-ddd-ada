@@ -2,14 +2,14 @@
 using MediatR;
 using techLogistica.Domain.Interfaces;
 
-public class CreatePurchaseNotificationHandler :
-       IRequestHandler<CreatePurchaseNotificationRequest, CreatePurchaseNotificationResponse>
+public class CalculateShippingHandler :
+       IRequestHandler<CreatePurchaseNotificationRequest, CalculateShippingResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPurchaseNotificationRepository _purchasenotificationRepository;
     private readonly IMapper _mapper;
 
-    public CreatePurchaseNotificationHandler(IUnitOfWork unitOfWork,
+    public CalculateShippingHandler(IUnitOfWork unitOfWork,
         IPurchaseNotificationRepository purchasenotificationRepository, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -17,7 +17,7 @@ public class CreatePurchaseNotificationHandler :
         _mapper = mapper;
     }
 
-    public async Task<CreatePurchaseNotificationResponse> Handle(CreatePurchaseNotificationRequest request,
+    public async Task<CalculateShippingResponse> Handle(CreatePurchaseNotificationRequest request,
         CancellationToken cancellationToken)
     {
         var purchasenotification = _mapper.Map<PurchaseNotification>(request);
@@ -26,6 +26,6 @@ public class CreatePurchaseNotificationHandler :
 
         await _unitOfWork.Commit(cancellationToken);
 
-        return _mapper.Map<CreatePurchaseNotificationResponse>(purchasenotification);
+        return _mapper.Map<CalculateShippingResponse>(purchasenotification);
     }
 }

@@ -7,9 +7,7 @@ namespace techLogistica.API.Controllers;
 public class WeatherForecastController : ControllerBase
 {
     
-    
-    
-    
+       
     
     
     static readonly string[] Summaries = new[]
