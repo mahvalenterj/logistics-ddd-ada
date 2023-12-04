@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using techLogistica.Domain.Entities;
 
 public sealed record AcceptDeliveryRequest(
    Guid DeliveryPersonId,

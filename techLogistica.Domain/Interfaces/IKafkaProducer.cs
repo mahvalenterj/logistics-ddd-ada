@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using techLogistica.Domain.Entities;
 
 namespace techLogistica.Domain.Interfaces
 {

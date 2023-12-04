@@ -1,5 +1,7 @@
 ﻿
 
+using techLogistica.Domain.Entities;
+
 namespace techLogistica.Domain.Interfaces
 {
     public interface IRedisRepository

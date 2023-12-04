@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using techLogistica.Domain.Entities;
 using techLogistica.Domain.Interfaces;
 
-namespace techLogistica.Application.UseCases
+namespace techLogistica.Application.UseCases.DeliveryPersonUseCase
 {
-    //Consertar
+
     public class AcceptDeliveryHandler :
         IRequestHandler<AcceptDeliveryRequest, AcceptDeliveryResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDeliveryRepository _deliveryRepository;
-        private readonly IDeliveryPersonRepository _deliveryPersonRepository; // Adicione esta linha
+        private readonly IDeliveryPersonRepository _deliveryPersonRepository;
         private readonly IMapper _mapper;
-
-
 
         public AcceptDeliveryHandler(IUnitOfWork unitOfWork,
             IDeliveryRepository deliveryRepository, IMapper mapper)
@@ -25,7 +23,6 @@ namespace techLogistica.Application.UseCases
             _unitOfWork = unitOfWork;
             _deliveryRepository = deliveryRepository;
             _mapper = mapper;
-
         }
 
         public async Task<AcceptDeliveryResponse> Handle(AcceptDeliveryRequest request, CancellationToken cancellationToken)
@@ -71,22 +68,22 @@ namespace techLogistica.Application.UseCases
             }
         }
 
-        /*private async Task<bool> CheckDeliveryPersonAvailability(Guid deliveryPersonId, CancellationToken cancellationToken)
+        private async Task<bool> CheckDeliveryPersonAvailability(Guid deliveryPersonId, CancellationToken cancellationToken)
         {
-            // Adicione a lógica necessária para verificar se o entregador está livre para receber entregas
-            // Retorna true se estiver livre, false caso contrário
-            // Este método deve ser implementado com base nas regras de negócio específicas
-            // por exemplo, verificando se o entregador não está em outra entrega no momento.
-            return true; // Temporariamente retornando true para compilar
-        }*/
+            
+            return true; 
+        }
 
         private async Task<DeliveryPerson> ValidateDeliveryPerson(Guid deliveryPersonId, CancellationToken cancellationToken)
         {
             var deliveryPerson = await _deliveryPersonRepository.Get(deliveryPersonId, cancellationToken);
 
-            return deliveryPerson is null
-                ? throw new InvalidOperationException("Delivery person not found. The provided delivery person does not exist.")
-                : deliveryPerson;
+            if (deliveryPerson == null)
+            {
+                throw new InvalidOperationException("Delivery person not found. The provided delivery person does not exist.");
+            }
+
+            return deliveryPerson;
         }
 
         private async Task<Delivery> ValidateOrCreateDelivery(Guid deliveryPersonId, CancellationToken cancellationToken)

@@ -1,25 +1,31 @@
 ﻿using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Interfaces;
 
-public class CacheHandler : IRequestHandler<CacheRequest, CacheResponse>
+
+namespace techLogistica.Application.UseCases.Cache
+
 {
-    // repository camada de dados
-    private readonly IRedisRepository _cache;
-    // mapper
-    private readonly IMapper _mapper;
-
-
-    public CacheHandler(IRedisRepository cache,
-        IMapper mapper)
+    public class CacheHandler : IRequestHandler<CacheRequest, CacheResponse>
     {
-        _cache = cache;
-        _mapper = mapper;
-    }
+        // repository camada de dados
+        private readonly IRedisRepository _cache;
+        // mapper
+        private readonly IMapper _mapper;
 
-    public async Task<CacheResponse> Handle(CacheRequest request, CancellationToken cancellationToken)
-    {
-        var cache = await _cache.GetKeyRedis(request.Key);
 
-        return _mapper.Map<CacheResponse>(cache);
+        public CacheHandler(IRedisRepository cache,
+            IMapper mapper)
+        {
+            _cache = cache;
+            _mapper = mapper;
+        }
+
+        public async Task<CacheResponse> Handle(CacheRequest request, CancellationToken cancellationToken)
+        {
+            var cache = await _cache.GetKeyRedis(request.Key);
+
+            return _mapper.Map<CacheResponse>(cache);
+        }
     }
 }

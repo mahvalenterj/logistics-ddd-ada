@@ -2,6 +2,8 @@
 using System.Threading;
 using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Entities;
+using techLogistica.Domain.Interfaces;
 
 namespace techLogistica.Application.UseCases
 {

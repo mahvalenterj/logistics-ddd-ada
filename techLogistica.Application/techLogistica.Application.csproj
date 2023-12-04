@@ -40,8 +40,8 @@
 		<Folder Include="Shared\Behavior\" />
 		<Folder Include="Shared\Exceptions\" />
 		<Folder Include="UseCases\Cache\" />
-		<Folder Include="UseCases\DeliveryPerson\GetAllDeliveryPerson\" />
-		<Folder Include="UseCases\DeliveryPerson\DeleteDeliveryPerson\" />		
+		<Folder Include="UseCases\DeliveryPersonUseCase\GetAllDeliveryPerson\" />
+		<Folder Include="UseCases\DeliveryPersonUseCase\DeleteDeliveryPerson\" />		
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="..\.editorconfig" Link=".editorconfig" />

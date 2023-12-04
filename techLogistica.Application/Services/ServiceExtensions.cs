@@ -5,15 +5,17 @@ using System.Reflection;
 
 // Confiruar as extensões da nossa aplicação
 // Registrar os serviços para que posssamos utiliza-lo quando subirmos a aplicação
-
-public static class ServiceExtensions
+namespace techLogistica.Application.Services
 {
-    public static void ConfigureApplicationApp(this IServiceCollection services)
+    public static class ServiceExtensions
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        
+        public static void ConfigureApplicationApp(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        }
     }
 }

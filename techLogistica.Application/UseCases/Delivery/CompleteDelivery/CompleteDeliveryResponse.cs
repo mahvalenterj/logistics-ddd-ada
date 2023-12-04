@@ -1,4 +1,5 @@
 ﻿using System;
+using techLogistica.Domain.Entities;
 
 public class CompleteDeliveryResponse
 {

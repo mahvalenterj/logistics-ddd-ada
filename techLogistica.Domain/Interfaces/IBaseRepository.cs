@@ -1,4 +1,7 @@
-﻿public interface IBaseRepository<T> where T : BaseEntity
+﻿using techLogistica.Domain.Entities;
+
+
+public interface IBaseRepository<T> where T : BaseEntity
 {
     public void Create(T entity); // INSERE NO BANCO DE DADOS
     public void Update(T entity); // ALTERA UM REGISTRO NO BD

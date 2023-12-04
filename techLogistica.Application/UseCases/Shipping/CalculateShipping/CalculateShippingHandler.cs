@@ -1,9 +1,12 @@
-﻿/*using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using techLogistica.Domain.Interfaces;
+
+namespace techLogistica.Application.UseCases.Shipping.CalculateShipping
+{
 
 public class CalculateShippingHandler :
        IRequestHandler<CalculateShippingRequest, CalculateShippingResponse>
@@ -32,4 +35,6 @@ public class CalculateShippingHandler :
 
         return response;
     }
-}*/
+}
+
+}

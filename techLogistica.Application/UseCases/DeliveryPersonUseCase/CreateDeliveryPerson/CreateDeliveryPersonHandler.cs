@@ -7,7 +7,7 @@ using techLogistica.Domain.Entities;
 using techLogistica.Domain.Interfaces;
 
 
-namespace techLogistica.Application.UseCases
+namespace techLogistica.Application.UseCases.DeliveryPerson.CreateDeliveryPerson
 {
     public class CreateDeliveryPersonHandler :
     IRequestHandler<CreateDeliveryPersonRequest, CreateDeliveryPersonResponse>
