@@ -1,4 +1,10 @@
-﻿public class MessageReceivedEventArgs
+﻿
+namespace techLogistica.Domain.Entities
+
 {
-    public string Message { get; set; }
+    public class MessageReceivedEventArgs
+    {
+        public string Message { get; set; }
+    }
+
 }

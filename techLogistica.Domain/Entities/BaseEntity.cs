@@ -1,8 +1,14 @@
-﻿public class BaseEntity
+﻿
+namespace techLogistica.Domain.Entities
 {
-    public Guid Id { get; set; }
-    public DateTimeOffset? DateCreated { get; set; }
-    public DateTimeOffset? DateUpdated { get; set; }
-    public DateTimeOffset? DateDeleted { get; set; }
+
+    public class BaseEntity
+    {
+        public Guid Id { get; set; }
+        public DateTimeOffset? DateCreated { get; set; }
+        public DateTimeOffset? DateUpdated { get; set; }
+        public DateTimeOffset? DateDeleted { get; set; }
+
+    }
 
 }

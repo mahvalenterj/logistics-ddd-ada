@@ -1,9 +1,14 @@
 ﻿using System;
-namespace techLogistica.Domain.Enums;
 
-public enum MessageStatus
+
+namespace techLogistica.Domain.Enums
 {
-    InProcessing,
-    WithError,
-    Successful
+
+    public enum MessageStatus
+    {
+        InProcessing,
+        WithError,
+        Successful
+    }
+
 }
