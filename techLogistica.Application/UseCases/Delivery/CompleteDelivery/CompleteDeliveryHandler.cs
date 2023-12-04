@@ -2,6 +2,7 @@
 using System.Threading;
 using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Entities;
 using techLogistica.Domain.Interfaces;
 
 public class CompleteDeliveryHandler : IRequestHandler<CompleteDeliveryRequest, CompleteDeliveryResponse>

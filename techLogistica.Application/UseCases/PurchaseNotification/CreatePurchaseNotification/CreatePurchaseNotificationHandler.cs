@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using techLogistica.Domain.Entities;
 using techLogistica.Domain.Interfaces;
 
 public class CalculateShippingHandler :

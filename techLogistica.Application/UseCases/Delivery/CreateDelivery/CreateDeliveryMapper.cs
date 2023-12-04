@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using techLogistica.Domain.Entities;
 
 
 public sealed class CreateDeliveryPersonMapper : Profile

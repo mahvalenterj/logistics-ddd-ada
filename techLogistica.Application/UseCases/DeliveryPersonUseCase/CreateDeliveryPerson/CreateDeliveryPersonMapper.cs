@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 
-namespace techLogistica.Application.UseCases.DeliveryPerson.CreateDeliveryPerson
+namespace techLogistica.Application.UseCases.DeliveryPersonUseCase.CreateDeliveryPerson
 {
-    public sealed class CreateDeliveryPersonMapper : Profile
+    public class CreateDeliveryPersonMapper : Profile
     {
         public CreateDeliveryPersonMapper()
         {

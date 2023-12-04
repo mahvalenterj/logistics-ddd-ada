@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using techLogistica.Domain.Entities;
 
 public class CacheMapper : Profile
 {

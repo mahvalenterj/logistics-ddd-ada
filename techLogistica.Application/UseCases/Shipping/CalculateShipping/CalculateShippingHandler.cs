@@ -30,7 +30,6 @@ public class CalculateShippingHandler :
         var response = new CalculateShippingResponse
         {
             ShippingCost = shippingCost,
-            Message = "Frete grátis para todos os CEPs."
         };
 
         return response;

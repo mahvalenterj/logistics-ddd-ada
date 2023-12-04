@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using techLogistica.Domain.Entities;
 
 
 public class OnTheWayDeliveryMapper : Profile
